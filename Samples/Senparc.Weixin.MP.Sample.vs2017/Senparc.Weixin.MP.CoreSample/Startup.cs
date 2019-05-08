@@ -89,8 +89,8 @@ namespace Senparc.Weixin.MP.CoreSample
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("~/swagger/v1/swagger.json", "Senparc.Weixin SDK Demo V1");
-                c.InjectJavascript("~/Scripts/swagger.js");
+                c.SwaggerEndpoint("/VirtualPath" + "/swagger/v1/swagger.json", "Senparc.Weixin SDK Demo V1");
+                c.InjectJavascript("/VirtualPath" + "/Scripts/swagger.js");
             });
 
 
