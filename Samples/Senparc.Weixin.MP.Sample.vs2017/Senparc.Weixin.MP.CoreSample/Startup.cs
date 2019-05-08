@@ -19,7 +19,8 @@ using Senparc.Weixin.Open.ComponentAPIs;//DPBMARK Open DPBMARK_END
 using Senparc.Weixin.TenPay;//DPBMARK TenPay DPBMARK_END
 using Senparc.Weixin.Work;//DPBMARK Work DPBMARK_END
 using Senparc.Weixin.WxOpen;//DPBMARK MiniProgram DPBMARK_END
-using Senparc.CO2NET.Utilities; 
+using Senparc.CO2NET.Utilities;
+using Microsoft.OpenApi.Models;
 
 namespace Senparc.Weixin.MP.CoreSample
 {
@@ -42,8 +43,14 @@ namespace Senparc.Weixin.MP.CoreSample
             services.AddMemoryCache();//使用本地缓存必须添加
             services.AddSession();//使用Session
 
+            //添加Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SenparcWeixinDemoApi", Version = "v1" });
+            });
+
             /*
-             * CO2NET 是从 Senparc.Weixin 分离的底层公共基础模块，经过了长达 6 年的迭代优化，稳定可靠。
+             * CO2NET 是从 Senparc.Weixin 分离的底层公共基础模块，经过了长达 7 年的迭代优化，稳定可靠。
              * 关于 CO2NET 在所有项目中的通用设置可参考 CO2NET 的 Sample：
              * https://github.com/Senparc/Senparc.CO2NET/blob/master/Sample/Senparc.CO2NET.Sample.netcore/Startup.cs
              */
@@ -76,6 +83,14 @@ namespace Senparc.Weixin.MP.CoreSample
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            //配置Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("~/swagger/v1/swagger.json", "Senparc.Weixin SDK Demo V1");
+                c.InjectJavascript("~/Scripts/swagger.js");
             });
 
 
