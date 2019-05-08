@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Senparc.Weixin.MP.CoreSample.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Routing;
     using Senparc.Weixin.MP;
     using Senparc.Weixin.MP.Entities;
@@ -39,4 +40,15 @@ namespace Senparc.Weixin.MP.CoreSample.Controllers
     //        return "OK";//XML
     //    }
     //}
+
+    [ApiController]
+    [Route("/api/test-get", Name = "GetTest")]
+    public class TestApiController : Controller
+    {
+        [HttpGet]
+        public string Get(string id, int number)
+        {
+            return $"{id}.{number}";
+        }
+    }
 }
