@@ -33,6 +33,10 @@ namespace Senparc.Weixin.MP.Sample.Controllers
 {
     public class HomeController : BaseController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             Func<Version, string> getDisplayVersion = version =>
